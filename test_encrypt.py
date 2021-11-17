@@ -1,6 +1,8 @@
+import pytest
+
 from Helper.EncryptorDecryptor import *
 from Utils.TestModules import *
-import pytest
+
 
 # Manual random tests
 def test_encrypt_decrypt1():

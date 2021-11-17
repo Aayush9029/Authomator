@@ -1,6 +1,6 @@
-from Helper.EncryptorDecryptor import *
 from random import randint
 
+from Helper.EncryptorDecryptor import *
 
 
 def string_to_bytes(string) -> bytes:
