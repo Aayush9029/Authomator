@@ -1,10 +1,10 @@
 import base64
+
+from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
-from Crypto import Random
 
 
-    
 def encrypt(key, source, encode=True):
     key = SHA256.new(key).digest()
     IV = Random.new().read(AES.block_size)
