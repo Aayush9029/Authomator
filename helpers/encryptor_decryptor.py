@@ -51,5 +51,6 @@ def decrypt(key, source, decode=True):
     data = decryptor.decrypt(source[AES.block_size:])  # decrypt
     padding = data[-1]
     if data[-padding:] != bytes([padding]) * padding:
-        raise ValueError("Invalid padding...")
+        print("Reporting to the owner")
+        exit("Incorrect password")
     return data[:-padding]
