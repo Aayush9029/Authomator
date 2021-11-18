@@ -1,8 +1,7 @@
 # Authomator
-Automate login using sensitive info (login credentials) without compromising security and without using env variables.
+Automate login actions which requires entering credentials without compromising security.
 
 ![Screen Shot 2021-11-17 at 9 59 44 PM](https://user-images.githubusercontent.com/43297314/142343826-bf056b53-b17e-434e-8712-efe637fe3f92.png)
-
 
 
 > ## Why was this made ❓
@@ -15,6 +14,7 @@ Automate login using sensitive info (login credentials) without compromising sec
 > The attacker needs first get access to the computer 💻
 > 
 > Then need to know code for each of the passwords saved on the data.json file; *yes each password can have seperate key* 🔐
+> This is one extra layer of extra security compared to env variables.
 
 
 > ## Security
