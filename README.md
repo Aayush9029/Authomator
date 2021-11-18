@@ -1,7 +1,7 @@
 # Authomator
 Automate login automations which requires entering credentials without compromising security.
 
-[![pylint](https://github.com/Aayush9029/Authomator/actions/workflows/pylint.yml/badge.svg)](https://github.com/Aayush9029/Authomator/actions/workflows/pylint.yml) [![pytest](https://github.com/Aayush9029/Authomator/actions/workflows/pytests.yml/badge.svg)](https://github.com/Aayush9029/Authomator/actions/workflows/pytests.yml) [![CodeQL](https://github.com/Aayush9029/Authomator/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Aayush9029/Authomator/actions/workflows/codeql-analysis.yml)
+[![pylint](https://github.com/Aayush9029/Authomator/actions/workflows/pylint.yml/badge.svg)](https://github.com/Aayush9029/Authomator/actions/workflows/pylint.yml) [![pytest](https://github.com/Aayush9029/Authomator/actions/workflows/pytests.yml/badge.svg)](https://github.com/Aayush9029/Authomator/actions/workflows/pytests.yml) [![CodeQL](https://github.com/Aayush9029/Authomator/actions/workflows/codeql-analysis.yml/badge.svg?branch=main)](https://github.com/Aayush9029/Authomator/actions/workflows/codeql-analysis.yml)
 
 ![Screen Shot 2021-11-17 at 9 59 44 PM](https://user-images.githubusercontent.com/43297314/142343826-bf056b53-b17e-434e-8712-efe637fe3f92.png)
 
