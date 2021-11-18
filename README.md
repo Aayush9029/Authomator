@@ -1,5 +1,5 @@
 # Authomator
-Automate login actions which requires entering credentials without compromising security.
+Automate login automations which requires entering credentials without compromising security.
 
 ![Screen Shot 2021-11-17 at 9 59 44 PM](https://user-images.githubusercontent.com/43297314/142343826-bf056b53-b17e-434e-8712-efe637fe3f92.png)
 
