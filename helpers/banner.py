@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 '''
 Contains banner for the application.
 '''

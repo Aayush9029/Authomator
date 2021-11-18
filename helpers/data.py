@@ -1,12 +1,15 @@
 '''
 Data class app which parses command line arguments, displays, saves and loads data.
 '''
-import argparse
 import json
+import sys
 from os import getenv, mkdir
+
+from util.test_modules import string_to_bytes
+
 from helpers import encryptor_decryptor as ed
 from helpers.banner import COLORS as c
-from util.test_modules import string_to_bytes
+
 
 class Data:
     '''
@@ -27,21 +30,21 @@ class Data:
         Creates a json file using the encrypted data
         '''
         try:
-            with open(self.save_path, 'w') as f:
-                json.dump(self.encrypted_data, f)
+            with open(self.save_path, 'w',  encoding='UTF-8') as file:
+                json.dump(self.encrypted_data, file)
         except FileNotFoundError:
             print(c.RED + 'File not found, crearing ~/.authomator/data.json' + c.END)
             # make folder and file if it doesn't exist
             try:
                 mkdir(self.save_path[:self.save_path.rfind('/')])
-                with open(self.save_path, 'w') as f:
-                    json.dump(self.encrypted_data, f)
+                with open(self.save_path, 'w',  encoding='UTF-8') as file:
+                    json.dump(self.encrypted_data, file)
             except FileExistsError:
                 print('File already exists')
-                exit()
+                sys.exit()
             except OSError:
                 print('Invalid path')
-                exit()
+                sys.exit()
 
 
     def load_json(self) -> None:
@@ -49,12 +52,10 @@ class Data:
         Loads json file and creats a json file if it doesn't exist
         '''
         try:
-            with open(self.save_path, 'r') as f:
-                self.encrypted_data = json.load(f)
+            with open(self.save_path, 'r',  encoding='UTF-8') as file:
+                self.encrypted_data = json.load(file)
         except FileNotFoundError:
             self.create_json()
-
-        
 
     def decrypt(self):
         '''
@@ -76,11 +77,15 @@ class Data:
         if len(self.decrypted_data) == 0:
             print('No passwords found, you need to add some!')
             return
-        print('{}'.format(c.PRIMARY + 'List of passwords' + c.END))
+        print(f"\n{c.SECONDARY} List of passwords {c.END}")
         for item in self.decrypted_data:
             # Print username with index and spacing with padding using {0:<10} and .format
-            print('{} {:<10s} {} {:<10s} {}'.format(c.SECONDARY, item['index'], c.PRIMARY, item['username'], c.END))
-        
+            print('{} {:<10s} {} {:<10s} {}'
+            .format(
+                c.SECONDARY, item['index'],
+                c.PRIMARY, item['username'],
+                c.END)
+            )
 
     def add_password(self) -> None:
         '''
@@ -99,8 +104,8 @@ class Data:
         '''
         Deletes a password
         '''
-        with open(self.save_path, 'r') as f:
-            self.encrypted_data = json.load(f)
+        with open(self.save_path, 'r',  encoding='UTF-8') as file:
+            self.encrypted_data = json.load(file)
         self.decrypt()
         self.display_list()
         self.selected_index = input('Select a password to delete: ')
@@ -109,8 +114,15 @@ class Data:
         if self.selected_index.isdigit():
             self.selected_index = int(self.selected_index)
             if self.selected_index < len(self.encrypted_data):
-                print('Are you sure you want to delete {}? (y/n)'.format(self.decrypted_data[self.selected_index]['username']))
+                print(
+                    f"""{c.CYAN}
+                        Are you sure you want to delete
+                        {self.decrypted_data[self.selected_index]['username']}? (y/n)
+                        {c.GREEN}
+                    """
+                )
                 confirmation = input('> ')
+                print(c.END)
                 if confirmation == 'y':
                     del self.encrypted_data[self.selected_index]
                     self.create_json()
@@ -119,31 +131,39 @@ class Data:
             else:
                 print('Invalid index')
         else:
-            print('Index must be between 0 and {}'.format(len(self.encrypted_data)))
-        
+            print(f"Index must be between 0 and {len(self.encrypted_data)}")
+
     def edit_password(self) -> None:
         '''
         Edits a password
         '''
-        with open(self.save_path, 'r') as f:
-            self.encrypted_data = json.load(f)
+        with open(self.save_path, 'r',  encoding='UTF-8') as file:
+            self.encrypted_data = json.load(file)
+
         self.decrypt()
         self.display_list()
         self.selected_index = input('Select a password to edit: ')
         if self.selected_index.isdigit():
             self.selected_index = int(self.selected_index)
             if self.selected_index < len(self.encrypted_data):
-                print('Are you sure you want to edit {}? (y/n)'.format(self.decrypted_data[self.selected_index]['username']))
+
+                print(f"""
+                Are you sure you want to edit {self.decrypted_data[self.selected_index]['username']}? (y/n)
+                """)
                 confirmation = input('> ')
                 if confirmation == 'y':
-                    self.encrypted_data[self.selected_index]['password'] = ed.encrypt(self.key, string_to_bytes(input('Password: ').strip()))
+                    self.encrypted_data[self.selected_index]['password'] = ed.encrypt(
+                        self.key,
+                        string_to_bytes(input('Password: ').strip())
+                        )
+
                     self.create_json()
                     print('Password edited')
                 self.create_json()
             else:
                 print('Invalid index')
         else:
-            print('Index must be between 0 and {}'.format(len(self.encrypted_data)))
+            print(f"Index must be between 0 and {len(self.encrypted_data)}")
 
     def display_passwords(self) -> None:
         '''
