@@ -2,10 +2,12 @@
 Encryptor decryptor which uses AES-256-CBC with a random IV and SHA-256 hash
 '''
 import base64
+import sys
 
 from Crypto import Random
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
+
 
 def encrypt(key, source, encode=True):
     '''
@@ -51,5 +53,6 @@ def decrypt(key, source, decode=True):
     data = decryptor.decrypt(source[AES.block_size:])  # decrypt
     padding = data[-1]
     if data[-padding:] != bytes([padding]) * padding:
-        raise ValueError("Invalid padding...")
+        print("Reporting to the owner")
+        sys.exit("Incorrect password")
     return data[:-padding]
