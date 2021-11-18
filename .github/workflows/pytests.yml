@@ -1,4 +1,4 @@
-name: pytestPylint
+name: pytest
 
 on:
   push:
