@@ -14,7 +14,7 @@ Automate login using sensitive info (login credentials) without compromising sec
 > 
 > The attacker needs first get access to the computer 💻
 > 
-> Then need to know code for each of the passwords being saved *each password can have seperate key* 🔐
+> Then need to know code for each of the passwords saved on the data.json file; *yes each password can have seperate key* 🔐
 
 
 > ## Security
