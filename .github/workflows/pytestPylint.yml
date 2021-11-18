@@ -23,7 +23,7 @@ jobs:
         if [ -f requirements-test.txt ]; then pip install -r requirements-test.txt; fi
     - name:  Run pytests
       run: |
-        pytest
+        pytest test_encrypt.py
     - name: Analysing the code with pylint
       run: |
         pylint $(find . -name "*.py" | xargs)
