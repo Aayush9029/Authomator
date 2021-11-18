@@ -39,4 +39,3 @@ def generate_random_code(start=100, end=100000) -> bytes:
     '''
     code =  str(randint(start, end))
     return string_to_bytes(code)
-    

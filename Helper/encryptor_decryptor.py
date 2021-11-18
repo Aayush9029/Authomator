@@ -53,4 +53,3 @@ def decrypt(key, source, decode=True):
     if data[-padding:] != bytes([padding]) * padding:
         raise ValueError("Invalid padding...")
     return data[:-padding]
-    
