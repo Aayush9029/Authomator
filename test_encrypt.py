@@ -5,8 +5,8 @@ from random import randint
 
 import pytest
 
-from helper.encryptor_decryptor import decrypt, encrypt
-from utils.test_modules import generate_random_code, generate_random_string
+from helpers.encryptor_decryptor import decrypt, encrypt
+from util.test_modules import generate_random_code, generate_random_string
 
 
 # Random tests for messages
